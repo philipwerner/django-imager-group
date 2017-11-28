@@ -52,7 +52,7 @@ class ImagerProfile(models.Model):
     active = models.BooleanField(default=True)
     user = models.OneToOneField(User)
 
-    def active(self):
+    def is_active(self):
         """Return active users."""
         return [user.username for user in User.objects.all() if user.active]
 
