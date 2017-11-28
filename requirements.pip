@@ -2,3 +2,4 @@ Django==1.11.7
 pytz==2017.3
 psycopg2==2.7.3.2
 factory-boy==2.9.2
+django-bootstrap==3-9.1.0

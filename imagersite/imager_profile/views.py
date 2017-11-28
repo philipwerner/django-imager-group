@@ -1,3 +1,7 @@
 from django.shortcuts import render
+from django.http import HttpResponse
 
-# Create your views here.
+
+def home_view(request):
+    """Home view callable, for the home page."""
+    return HttpResponse("Hello World!")
