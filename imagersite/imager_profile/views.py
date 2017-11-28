@@ -1,7 +1,13 @@
+
+"""Django imager views."""
 from django.shortcuts import render
-from django.http import HttpResponse
 
 
-def home_view(request):
-    """Home view callable, for the home page."""
-    return HttpResponse("Hello World!")
+def home_view(request, number=None):
+    """View for the home page."""
+    return render(request, 'imagersite/home.html')
+
+
+def login_view(request):
+    """View for the login page."""
+    return render(request, 'imagersite/login.html')
