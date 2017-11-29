@@ -1,19 +1,28 @@
-{% load bootstrap3 %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Imager</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="{% url 'homepage' %}"> Home </a></li>
+                <li><a href="{% url 'login' %}"> Login </a></li>
+                <li><a href="{% url 'registration_register' %}"> Register </a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        {% block content %}
+
+        {% endblock %}
+    </main>
+</body>
+</html>
+<!-- {% load bootstrap3 %}
 
 {% bootstrap_css %}
 {% bootstrap_javascript %}
 
-{% bootstrap_messages %}
-<nav>
-    <a href="{% url 'home' %)"> Home </a>
-    <a href="{% url 'login' %)"> Login</a>
-    <a href="{% url 'register' %)"> Register </a>
-</nav>
-
-(% if request.user.is_authenticated %)
-    <h2>How do you do {{ request.user.username }}</h2>
-{% endif %}
-
-{% block content %}
-
-{% endblock %}
+{% bootstrap_messages %} -->

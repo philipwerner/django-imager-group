@@ -8,6 +8,6 @@ def home_view(request, number=None):
     return render(request, 'imagersite/home.html')
 
 
-def login_view(request):
-    """View for the login page."""
-    return render(request, 'imagersite/login.html')
+# def login_view(request):
+#     """View for the login page."""
+#     return render(request, 'imagersite/login.html')
