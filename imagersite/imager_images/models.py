@@ -1,6 +1,6 @@
 """Model module for images."""
 from django.db import models
-from imager_profile import ImagerProfile
+from imager_profile.models import ImagerProfile
 
 
 # Create your models here.
@@ -20,8 +20,8 @@ class ImageBase(models.Model):
     title = models.CharField(max_length=100)
     description = models.TextField(max_length=500, blank=True, null=True)
     date_modified = models.DateField(auto_now=True)
-    date_published = models.DateField(blank=True, nill=True)
-    published = models.CharField(choices=PUBLISHED, max_lenght=10)
+    date_published = models.DateField(blank=True, null=True)
+    published = models.CharField(choices=PUBLISHED, max_length=10)
 
     class Meta:
         """Meta abstract stuffs."""
