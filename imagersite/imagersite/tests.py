@@ -1,9 +1,8 @@
 """Test module for imagersite views."""
-from django.test import Client, TestCase, RequestFactory
+from django.test import Client, TestCase
 from django.urls import reverse_lazy
 from django.contrib.auth.models import User
 from django.core import mail
-from imager_profile.views import home_view
 from bs4 import BeautifulSoup as soup
 
 
