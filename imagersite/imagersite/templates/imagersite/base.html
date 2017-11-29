@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Imager</title>
+</head>
+<body>
+    <header>
+        <nav>
+            {% if request.user.is_authenticated %}
+                <h2>Hello {{ request.user.username }}</h2>
+            {% endif %}
+            <ul>
+                <li><a href="{% url 'homepage' %}"> Home </a></li>
+                <li><a href="{% url 'login' %}"> Login </a></li>
+                <li><a href="{% url 'registration_register' %}"> Register </a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        {% block content %}
+
+        {% endblock %}
+    </main>
+</body>
+</html>
+<!-- {% load bootstrap3 %}
+
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+{% bootstrap_messages %} -->
