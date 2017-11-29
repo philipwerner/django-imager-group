@@ -62,7 +62,7 @@ class ImagerProfile(models.Model):
         null=True
     )
     active = models.BooleanField(default=True)
-    user = models.OneToOneField(User)
+    user = models.OneToOneField(User, related_name='profile')
 
     @property
     def is_active(self):
