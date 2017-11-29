@@ -106,7 +106,7 @@ class ViewTestCase(TestCase):
             'password2': 'awesomepassword',
             'email': 'awesome@cool.com'
         }
-        response = self.client.post(
+        self.client.post(
             reverse_lazy('registration_register'),
             data,
             follow=True
