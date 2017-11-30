@@ -44,3 +44,13 @@ class PhotoTestCase(TestCase):
         """Test that album is created"""
         larry_album = Album.objects.get()
         self.assertIsNotNone(larry_album)
+
+    def test_album_name_is_title(self):
+        """Testing that the album name is suppose to be the name"""
+        larry_album = Album.objects.get()
+        self.assertEqual(larry_album.title, 'Denver City')
+
+    def test_photo_titles_are_their_own_title(self):
+        """Tests photos title"""
+        first_user = User.objects.first()
+        self.assertTrue(first_user.profile.photo_set.first().title.startswith('Photo'))
