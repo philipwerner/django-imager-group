@@ -1,8 +1,18 @@
 """Imager Profile model."""
 from django.db import models
 from django.contrib.auth.models import User
+from django.dispatch import receiver
+from django.db.models.signals import post_save
 
 # Create your models here.
+
+
+class ActiveManager(models.Manager):
+    """Active subclass."""
+
+    def get_queryset(self):
+        """Query for subclass."""
+        return super(ActiveManager, self).get_queryset().filter(user__is_active=True)
 
 
 class ImagerProfile(models.Model):
@@ -26,6 +36,8 @@ class ImagerProfile(models.Model):
         ('FAKE', 'Fake'),
     ]
 
+    objects = models.Manager()
+    active = ActiveManager()
     website = models.CharField(max_length=180, blank=True, null=True)
     location = models.CharField(max_length=180, blank=True, null=True)
     fee = models.FloatField(max_length=20, blank=True, null=True)
@@ -50,9 +62,21 @@ class ImagerProfile(models.Model):
         null=True
     )
     active = models.BooleanField(default=True)
-    user = models.OneToOneField(User)
+    user = models.OneToOneField(User, related_name='profile')
 
+    @property
     def is_active(self):
         """Return active users."""
-        return [user.username for user in User.objects.all() if user.active]
+        return self.user.username
 
+    def __str__(self):
+        """Function to print username."""
+        return self.user.username
+
+
+@receiver(post_save, sender=User)
+def create_profile(sender, **kwargs):
+    """Attach a profile after new user is created."""
+    if kwargs['created']:
+        profile = ImagerProfile(user=kwargs['instance'])
+        profile.save()
