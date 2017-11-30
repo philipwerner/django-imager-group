@@ -141,3 +141,7 @@ LOGIN_URL = '/login/'
 LOGIN_REDIRECT_URL = '/'
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+PROFILE_URL = '/profile/'
+
+LIBRARY_URL = '/images/library/'
