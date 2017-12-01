@@ -11,23 +11,22 @@
     <title>Imager</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
+    {% load static %}
+    <link href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    {% block css %}
+    {% endblock %}
     <!-- Custom fonts for this template -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700,100italic,300italic,400italic,600italic,700italic" rel="stylesheet" type="text/css">
 
-    <!-- Custom styles for this template -->
-    <link href="static/css/business-casual.css" rel="stylesheet">
+    {% load static %}
+    <link href="{% static 'css/business-casual.css'%}" rel="stylesheet">
 
   </head>
 <body>
     <header>
         <nav class="navbar navbar-expand-lg navbar-light bg-faded py-lg-4">
-            {% if request.user.is_authenticated %}
-                <h2>Hello {{ request.user.username }}</h2>
-            {% endif %}
-      <div class="container">
+        <div class="container">
         <a class="navbar-brand text-uppercase text-expanded font-weight-bold d-lg-none">            
             {% if request.user.is_authenticated %}
                 <h2>Hello {{ request.user.username }}</h2>
@@ -42,12 +41,27 @@
                 <span class="sr-only">(current)</span>
               </a>
             </li>
+            {% if request.user.is_authenticated %}
+              <li class="nav-item px-lg-4">
+                <a class="nav-link text-uppercase text-expanded" href="{% url 'logout' %}">Logout</a>
+              </li>
+            {% else %}
+              <li class="nav-item px-lg-4">
+                <a class="nav-link text-uppercase text-expanded" href="{% url 'login' %}">Login</a>
+              </li>
+            {% endif %}
+            {% if request.user.is_authenticated %}
             <li class="nav-item px-lg-4">
-              <a class="nav-link text-uppercase text-expanded" href="{% url 'login' %}">Login</a>
+              <a class="nav-link text-uppercase text-expanded" href="{% url 'profile' %}">Profile</a>
+            </li>            
+            <li class="nav-item px-lg-4">
+              <a class="nav-link text-uppercase text-expanded" href="{% url 'library' %}">Library</a>
             </li>
+            {% else %}
             <li class="nav-item px-lg-4">
               <a class="nav-link text-uppercase text-expanded" href="{% url 'registration_register' %}">Register</a>
             </li>
+            {% endif %}
           </ul>
         </div>
       </div>
@@ -60,12 +74,13 @@
     </main>
     <footer class="bg-faded text-center py-5">
       <div class="container">
-        <p class="m-0">Copyright &copy; Your Website 2017</p>
+        <p class="m-0">Copyright &copy; Imager 2017</p>
       </div>
     </footer>
 
-    <!-- Bootstrap core JavaScript -->
-    <script src="static/jquery/jquery.min.js"></script>
-    <script src="static/bootstrap/js/bootstrap.bundle.min.js"></script>
+    {% load static %}
+    <script src="{% static 'jquery/jquery.min.js' %}"></script>
+    {% load static %}
+    <script src="{%static 'bootstrap/js/bootstrap.bundle.min.js' %}"></script>
 </body>
 </html>
