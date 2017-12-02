@@ -1,11 +1,12 @@
 """Module for image forms."""
 from django import forms
 from datetime import datetime
-from imager_images.models import Photo
+from imager_images.models import Photo, Album
 
 
-class FormBase(forms.ModelForm):
-    """Class for the Photo form"""
+class DocumentForm(forms.ModelForm):
+    """Class for the Photo and Album form."""
+
     title = forms.CharField(label='Title', max_length=100)
     description = forms.CharField(label='Description', widget=forms.Textarea)
     PUBLISHED = [
@@ -15,12 +16,26 @@ class FormBase(forms.ModelForm):
     ]
     published = forms.ChoiceField(choices=PUBLISHED)
 
+
+class PhotoForm(DocumentForm):
+    """Class for the Photo Form."""
+
     class Meta:
-        """Meta stuffs."""
+        """."""
 
-        abstract = True
+        model = Photo
+        fields = ('docfile', 'title', 'description', 'published')
+
+    docfile = forms.ImageField(label='Select File')
 
 
-class PhotoForm(FormBase):
-    """Class for the Album Form."""
+class AlbumForm(DocumentForm):
+    """Class for Album Form."""
+
+    class Meta:
+        """."""
+
+        model = Album
+        fields = ('docfile', 'title', 'description', 'published')
+
     docfile = forms.ImageField(label='Select File')

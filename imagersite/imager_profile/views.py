@@ -1,9 +1,12 @@
 """Views for this awesome app."""
 from django.shortcuts import render
+from django.template import RequestContext
+from django.http import HttpResponseRedirect
+from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User
 from imager_profile.models import ImagerProfile
 from imager_images.models import Photo
-from imager_images.forms import PhotoForm
+from imager_images.forms import AlbumForm, DocumentForm
 
 
 def home_view(request, number=None):

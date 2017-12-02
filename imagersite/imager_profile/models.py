@@ -3,6 +3,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.dispatch import receiver
 from django.db.models.signals import post_save
+from multiselectfield import MultiSelectField
 
 # Create your models here.
 
@@ -42,13 +43,13 @@ class ImagerProfile(models.Model):
     location = models.CharField(max_length=180, blank=True, null=True)
     fee = models.FloatField(max_length=20, blank=True, null=True)
     camera = models.CharField(
-        max_length=50,
+        max_choices=3,
         choices=CAMERA_CHOICES,
         blank=True,
         null=True
     )
     services = models.CharField(
-        max_length=50,
+        max_choices=3,
         choices=SERVICES,
         blank=True,
         null=True
@@ -56,18 +57,18 @@ class ImagerProfile(models.Model):
     bio = models.TextField(max_length=300, blank=True, null=True)
     phone = models.CharField(max_length=20, blank=True, null=True)
     photo_styles = models.CharField(
-        max_length=50,
+        max_choices=3,
         choices=STYLES,
         blank=True,
         null=True
     )
     active = models.BooleanField(default=True)
-    user = models.OneToOneField(User, related_name='profile')
+    user = models.OneToOneField(User, related_name='profile', on_delete=models.CASCADE)
 
     @property
     def is_active(self):
         """Return active users."""
-        return self.user.username
+        return self.user.is_active
 
     def __str__(self):
         """Function to print username."""

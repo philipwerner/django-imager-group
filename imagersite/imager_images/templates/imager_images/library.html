@@ -1,0 +1,40 @@
+{% extends "imagersite/base.html" %}
+{% load i18n %}
+
+{% block css%}
+{% load static %}
+<link href="{% static 'css/library.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+
+    <h1 class="my-4 text-center text-lg-left">Library</h1>
+
+    <div class="row text-center text-lg-left">
+    <h2>Albums</h2>
+
+{% for album in albums %}
+        <h3>{{album.title}}</h3>
+        <div class="col-lg-3 col-md-4 col-xs-6">
+          <a href="#" class="d-block mb-4 h-100">
+            <img class="img-fluid" src={{ album.docfile.url }} alt="My Album"/>
+          </a>
+          <p>{{album.description}}</p>
+          <h4>Uploaded: {{album.date_uploaded}}
+        </div>
+{% endfor %}
+
+    <h2>Photos</h2>
+
+{% for photo in photos %}
+        <h3>{{photo.title}}</h3>
+        <a href="/profile/{{ photo.user.user }}">{{ photo.user.user }}</a>
+        <div class="col-lg-3 col-md-4 col-xs-6">
+          <a href="/profile/{{photo.user.user}}" class="d-block mb-4 h-100">
+            <img class="img-fluid" src={{ photo.docfile.url }} alt="My image"/>
+          </a>
+          <p>{{photo.description}}</p>
+          <h4>Uploaded: {{photo.date_uploaded}}</h4>
+        </div>
+{% endfor %}
