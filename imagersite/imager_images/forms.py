@@ -17,7 +17,7 @@ class DocumentForm(forms.ModelForm):
     published = forms.ChoiceField(choices=PUBLISHED)
 
 
-class PhotoForm(DocumentForm):
+class PhotoForm(forms.ModelForm):
     """Class for the Photo Form."""
 
     class Meta:
@@ -27,9 +27,17 @@ class PhotoForm(DocumentForm):
         fields = ('docfile', 'title', 'description', 'published')
 
     docfile = forms.ImageField(label='Select File')
+    title = forms.CharField(label='Title', max_length=100)
+    description = forms.CharField(label='Description', widget=forms.Textarea)
+    PUBLISHED = [
+        ('PRIVATE', 'Private'),
+        ('SHARED', 'Shared'),
+        ('PUBLIC', 'Public')
+    ]
+    published = forms.ChoiceField(choices=PUBLISHED)
 
 
-class AlbumForm(DocumentForm):
+class AlbumForm(forms.ModelForm):
     """Class for Album Form."""
 
     class Meta:
@@ -39,3 +47,11 @@ class AlbumForm(DocumentForm):
         fields = ('docfile', 'title', 'description', 'published')
 
     docfile = forms.ImageField(label='Select File')
+    title = forms.CharField(label='Title', max_length=100)
+    description = forms.CharField(label='Description', widget=forms.Textarea)
+    PUBLISHED = [
+        ('PRIVATE', 'Private'),
+        ('SHARED', 'Shared'),
+        ('PUBLIC', 'Public')
+    ]
+    published = forms.ChoiceField(choices=PUBLISHED)

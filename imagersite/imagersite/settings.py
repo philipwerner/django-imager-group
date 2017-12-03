@@ -138,10 +138,6 @@ ACCOUNT_ACTIVATION_DAYS = 7
 
 LOGIN_URL = '/login/'
 
-LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/profile/'
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-
-PROFILE_URL = '/profile/'
-
-LIBRARY_URL = '/images/library/'
