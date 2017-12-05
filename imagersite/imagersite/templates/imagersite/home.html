@@ -21,9 +21,13 @@
                 </div>
         </div>
     </div>
-
-
 </div>
+<hr class="divider">
+<hr class="divider">
+{% for photo in photos %}
+<img class="all_photos" src= "{{ photo.image }}">
+<h4>{{ photo.user.username }}</h4>
+{% endfor %}
 
    
 {% endblock content %}

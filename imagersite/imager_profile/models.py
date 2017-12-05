@@ -59,7 +59,7 @@ class ImagerProfile(models.Model):
         blank=True,
         null=True
     )
-    bio = models.TextField(max_length=300, blank=True, null=True)
+    bio = models.TextField(max_length=500, blank=True, null=True)
     phone = models.CharField(max_length=20, blank=True, null=True)
     photo_styles = models.CharField(
         max_length=100,

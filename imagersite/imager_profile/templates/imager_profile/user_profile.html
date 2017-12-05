@@ -1,0 +1,28 @@
+{% extends "imagersite/base.html" %}
+
+{% block nav %}
+
+<li class="nav-item px-lg-4">
+    <a class="nav-link text-uppercase text-expanded" href="{% url 'add_image' %}">Add Image</a>
+</li>
+<li class="nav-item px-lg-4">
+    <a class="nav-link text-uppercase text-expanded" href="{% url 'add_album' %}">Add Album</a>
+</li>
+<li class="nav-item px-lg-4">
+    <a class="nav-link text-uppercase text-expanded" href="{% url 'edit_profile' %}">Update Profile</a>
+</li>
+
+{% endblock %}
+
+{% block content %}
+<h1>Welcome {{ user.username }}!</h1>
+<hr class="divider">
+<hr class="divider">
+<h2>Number of Albums: {{ request.user.profile.album.count }}</h2>
+<h2>Number of Photos: {{ request.user.profile.photo.count }}</h2>
+{% if request.user.is_authenticated %}
+<a href="{% url 'add_image' %}"><h2>Add Image</h2></a>
+<a href="{% url 'add_album' %}"><h2>Add Album</h2></a>
+<a href="{% url 'edit_profile' %}"><h2>Update Your Profile!</h2></a>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends "imagersite/base.html" %}
+
+{% block css%}
+
+{% load static %}
+<link href="{% static 'css/form.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block nav %}
+{% if request.user.is_authenticated %}
+<li class="nav-item px-lg-4">
+    <a class="nav-link text-uppercase text-expanded" href="{% url 'add_image' %}">Add Image</a>
+</li>
+<li class="nav-item px-lg-4">
+    <a class="nav-link text-uppercase text-expanded" href="{% url 'add_album' %}">Add Album</a>
+</li>
+<li class="nav-item px-lg-4">
+    <a class="nav-link text-uppercase text-expanded" href="{% url 'edit_profile' %}">Update Profile</a>
+</li>
+{% endif %}
+{% endblock %}
+
+{% block content %}
+
+{% if request.user.is_authenticated %}
+<div class='reg_form'>
+<h1>Add a Ablum</h1>
+    <section>
+        <form method="POST" enctype="multipart/form-data" class='reg_form'>
+            {% csrf_token %}
+            {{form.as_p}}
+            <input type="submit" value="Submit" />
+        </form>
+    </section>
+</div>
+{% else %}
+
+<h2>You must be logged in to edit your profile.</h2>
+<a class="nav-link text-uppercase text-expanded" href="{% url 'login' %}"><h3>Login</h3></a>
+
+{% endif %}
+{% endblock %}

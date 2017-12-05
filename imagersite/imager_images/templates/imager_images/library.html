@@ -6,13 +6,29 @@
 <link href="{% static 'css/library.css' %}" rel="stylesheet">
 {% endblock %}
 
+{% block nav %}
+{% if request.user.is_authenticated %}
+<li class="nav-item px-lg-4">
+    <a class="nav-link text-uppercase text-expanded" href="{% url 'add_image' %}">Add Image</a>
+</li>
+<li class="nav-item px-lg-4">
+    <a class="nav-link text-uppercase text-expanded" href="{% url 'add_album' %}">Add Album</a>
+</li>
+<li class="nav-item px-lg-4">
+    <a class="nav-link text-uppercase text-expanded" href="{% url 'edit_profile' %}">Update Profile</a>
+</li>
+{% endif %}
+{% endblock %}
+
 {% block content %}
 <div class="container">
 
     <h1 class="my-4 text-center text-lg-left">Library</h1>
 
     <div class="row text-center text-lg-left">
+    <hr class="divider">
     <h2>Albums</h2>
+    <hr class="divider">
 
 {% for album in albums %}
         <h3>{{album.title}}</h3>
@@ -25,7 +41,9 @@
         </div>
 {% endfor %}
 
+<hr class="divider">
     <h2>Photos</h2>
+<hr class="divider">
 
 {% for photo in photos %}
         <h3>{{photo.title}}</h3>
