@@ -1,6 +1,13 @@
 {% extends "imagersite/base.html" %}
 {% load i18n %}
+{% block css%}
+{% load static %}
+<link href="{% static 'css/form.css' %}" rel="stylesheet">
+{% endblock %}
 
 {% block content %}
-<p>{% trans "Account activation is complete" %}</p>
+<section class='complete'>
+    <h1>Enjoy!!</h1>
+    <p>{% trans "Account activation is complete" %}</p>
+</section>
 {% endblock %}

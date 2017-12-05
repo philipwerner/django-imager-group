@@ -1,0 +1,27 @@
+.reg_form {
+    text-align: center;
+}
+section {
+    padding: 15px;
+    border: 2px inset black;
+    width: 600px;
+    margin: 10px auto;
+}
+
+form {
+    margin: 5px;
+    text-align: left;
+}
+
+.helptext {
+    visibility: hidden;
+}
+
+.complete {
+    padding-top: 40px;
+    text-align: center;
+    width: 1000px;
+}
+p {
+    margin: 30px 5px;
+}

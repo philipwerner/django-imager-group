@@ -22,17 +22,23 @@ class ImagerProfile(models.Model):
         ('NIKON', 'Nikon'),
         ('ERSATZ', 'Ersatz'),
         ('NOTREAL', 'Notreal'),
+        ('MINOLTA', 'Minolta'),
+        ('CANNON', 'Cannon'),
+        ('SONY', 'Sony')
     ]
 
     SERVICES = [
         ('BABIES', 'Babies'),
         ('WEDDINGS', 'Weddings'),
         ('ACTION', 'Action'),
+        ('NATURE', 'Nature'),
+        ('PORTRAIT', 'Portrait'),
+        ('OTHER', 'Other'),
     ]
 
     STYLES = [
         ('BW', 'B&W'),
-        ('NOTBW', 'Not B&W'),
+        ('COLOR', 'Color'),
         ('FAKE', 'Fake'),
     ]
 
@@ -42,36 +48,36 @@ class ImagerProfile(models.Model):
     location = models.CharField(max_length=180, blank=True, null=True)
     fee = models.FloatField(max_length=20, blank=True, null=True)
     camera = models.CharField(
-        max_length=50,
+        max_length=100,
         choices=CAMERA_CHOICES,
         blank=True,
         null=True
     )
     services = models.CharField(
-        max_length=50,
+        max_length=100,
         choices=SERVICES,
         blank=True,
         null=True
     )
-    bio = models.TextField(max_length=300, blank=True, null=True)
+    bio = models.TextField(max_length=500, blank=True, null=True)
     phone = models.CharField(max_length=20, blank=True, null=True)
     photo_styles = models.CharField(
-        max_length=50,
+        max_length=100,
         choices=STYLES,
         blank=True,
         null=True
     )
     active = models.BooleanField(default=True)
-    user = models.OneToOneField(User, related_name='profile')
-
-    @property
-    def is_active(self):
-        """Return active users."""
-        return self.user.username
+    user = models.OneToOneField(User, related_name='profile', on_delete=models.CASCADE)
 
     def __str__(self):
         """Function to print username."""
         return self.user.username
+
+    @property
+    def is_active(self):
+        """Return active users."""
+        return self.user.is_active
 
 
 @receiver(post_save, sender=User)

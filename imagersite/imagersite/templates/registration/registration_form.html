@@ -1,11 +1,21 @@
 {% extends "imagersite/base.html" %}
 {% load i18n %}
+{% block css%}
+
+{% load static %}
+<link href="{% static 'css/form.css' %}" rel="stylesheet">
+{% endblock %}
 
 {% block content %}
-<form method="post" action=".">
-  {% csrf_token %}
-  {{ form.as_p }}
+<div class='reg_form'>
+<h1>Register For Imager</h1>
+    <section>
+        <form method="post">
+          {% csrf_token %}
+          {{ form.as_p }}
 
-  <input type="submit" value="{% trans 'Submit' %}" />
-</form>
+          <input type="submit" value="{% trans 'Submit' %}" />
+        </form>
+    </section>
+</div>
 {% endblock %}
