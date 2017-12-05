@@ -15,14 +15,23 @@
 {% endblock %}
 
 {% block content %}
+
+{% if request.user.is_authenticated %}
 <h1>Welcome {{ user.username }}!</h1>
+{% endif %}
 <hr class="divider">
 <hr class="divider">
-<h2>Number of Albums: {{ request.user.profile.album.count }}</h2>
-<h2>Number of Photos: {{ request.user.profile.photo.count }}</h2>
+<h3>Number of Albums: {{ request.user.profile.album.count }}</h3>
+<h3>Number of Photos: {{ request.user.profile.photo.count }}</h3>
+<h3>Website: {{ request.user.profile.website }}</h3>
+<h3>Location: {{ request.user.profile.location }}</h3>
+<h3>Services: {{ request.user.profile.services }}</h3>
+<h3>Bio: {{ request.user.profile.bio }}</h3>
 {% if request.user.is_authenticated %}
 <a href="{% url 'add_image' %}"><h2>Add Image</h2></a>
 <a href="{% url 'add_album' %}"><h2>Add Album</h2></a>
 <a href="{% url 'edit_profile' %}"><h2>Update Your Profile!</h2></a>
+
 {% endif %}
+
 {% endblock %}

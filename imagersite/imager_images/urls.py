@@ -2,6 +2,7 @@
 
 from django.conf import settings
 from django.conf.urls import url
+from django.conf.urls.static import static
 from imager_images.views import AlbumView, LibraryView, PhotoView
 
 urlpatterns = [
@@ -15,3 +16,7 @@ urlpatterns = [
         PhotoView.as_view(template_name='imager_images/photo.html'),
         name='photo'),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

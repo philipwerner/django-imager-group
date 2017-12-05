@@ -52,6 +52,13 @@ class EditProfileView(CreateView):
     #     """Get context data for view."""
     #     user = User.objects.get(username=username)
     #     return {'user': user}
+    def form_valid(self, form):
+        if self.request.user.is_authenticated:
+            form.instance.author = self.request.user
+            self.object = form.save()
+            return super(EditProfileView, self).form_valid(form)
+        else:
+            raise Http404()
 
 
 class AddImage(CreateView):
